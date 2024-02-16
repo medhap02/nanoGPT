@@ -33,3 +33,9 @@ loading weights from pretrained gpt: gpt2-xl
 forcing vocab_size=50257, block_size=1024, bias=True
 overriding dropout rate to 0.0
 number of parameters: 1555.97M
+num decayed parameter tensors: 194, with 1,556,609,600 parameters
+num non-decayed parameter tensors: 386, with 1,001,600 parameters
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+step 0: train loss 2.6376, val loss 2.6955
+iter 0: loss 2.7970, time 110902.56ms, mfu -100.00%
