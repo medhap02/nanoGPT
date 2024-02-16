@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=nano
 #SBATCH --output=/ocean/projects/cis230002p/palavall/nanoGPT/xsum_finetune.err
-#SBATCH --err=/ocean/projects/cis230002p/palavall/nanoGPT/xsum_finetune.err
+#SBATCH --err=/ocean/projects/cis230002p/palavall/nanoGPT/xsum_finetune.out
 #SBATCH --time=8:00:00
 #SBATCH	--mem=16Gb
 #SBATCH --gpus=v100-32:1
