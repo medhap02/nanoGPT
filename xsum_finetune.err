@@ -2,7 +2,7 @@
   warnings.warn(
 /jet/home/palavall/.conda/envs/mpalaval-research/lib/python3.10/site-packages/huggingface_hub/file_download.py:980: UserWarning: Not enough free disk space to download the file. The expected file size is: 6431.83 MB. The target location /jet/home/palavall/.cache/huggingface/hub/models--gpt2-xl/blobs only has 0.00 MB free disk space.
   warnings.warn(
-Downloading model.safetensors:   0%|          | 0.00/6.43G [00:00<?, ?B/s]Downloading model.safetensors:   0%|          | 21.0M/6.43G [00:00<00:48, 132MB/s]Traceback (most recent call last):
+Downloading model.safetensors:   0%|          | 0.00/6.43G [00:00<?, ?B/s]Traceback (most recent call last):
   File "/ocean/projects/cis230002p/palavall/nanoGPT/train.py", line 182, in <module>
     model = GPT.from_pretrained(init_from, override_args)
   File "/ocean/projects/cis230002p/palavall/nanoGPT/model.py", line 238, in from_pretrained
@@ -20,4 +20,4 @@
   File "/jet/home/palavall/.conda/envs/mpalaval-research/lib/python3.10/tempfile.py", line 483, in func_wrapper
     return func(*args, **kwargs)
 OSError: [Errno 122] Disk quota exceeded
-Downloading model.safetensors:   0%|          | 31.5M/6.43G [00:00<01:07, 95.4MB/s]
+Downloading model.safetensors:   0%|          | 10.5M/6.43G [00:00<01:59, 53.8MB/s]
