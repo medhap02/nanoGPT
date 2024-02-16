@@ -6,7 +6,6 @@
 #SBATCH	--mem=16Gb
 #SBATCH --gpus=v100-32:1
 #SBATCH --partition=GPU-shared
-#export HF_DATASETS_CACHE="/ocean/projects/cis230002p/palavall/nanoGPT/cache/"
 
 module load anaconda3
 conda activate mpalaval-research
