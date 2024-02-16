@@ -29,3 +29,7 @@ decay_lr = False
 
 tokens per iteration will be: 32,768
 Initializing from OpenAI GPT-2 weights: gpt2-xl
+loading weights from pretrained gpt: gpt2-xl
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 1555.97M
