@@ -1,15 +1,16 @@
 import time
 
-out_dir = 'out-xsum'
+out_dir = 'out-xsum-2'
+in_dir = 'out-xsum'
 eval_interval = 5
 eval_iters = 50
 wandb_log = False # feel free to turn on
-wandb_project = 'xsum'
+wandb_project = 'xsum2'
 wandb_run_name = 'ft-' + str(time.time())
 
 dataset = 'xsum'
-init_from = 'gpt2-xl' # this is the largest GPT-2 model
-
+# init_from = '/content/drive/MyDrive/nanoGPT/out_xsum/ckpt.pt'
+init_from = 'finetune_xsum'
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False
 
