@@ -14,12 +14,12 @@ init_from = 'gpt2-large' # this is the largest GPT-2 model
 always_save_checkpoint = False
 
 # the number of examples per iter:
-# 1 batch_size * 32 grad_accum * 1024 tokens = 32,768 tokens/iter
-# shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
+# 1 batch_size * 8 grad_accum * 1024 tokens = 8192 tokens/iter
+# xsum has 5,373,173 tokens, so 1 epoch ~= 655.9 iters
 batch_size = 1
-gradient_accumulation_steps = 32
-max_iters = 20
+gradient_accumulation_steps = 8
+max_iters = 655
 
 # finetune at constant LR
 learning_rate = 3e-5
-decay_lr = False
+decay_lr = True
