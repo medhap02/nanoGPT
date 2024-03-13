@@ -9,7 +9,7 @@ wandb_project = 'xsum2'
 wandb_run_name = 'ft-' + str(time.time())
 
 dataset = 'xsum'
-# init_from = '/content/drive/MyDrive/nanoGPT/out_xsum/ckpt.pt'
+# init_from = '/content/drive/MyDrive/nanoGPT/out-xsum/ckpt.pt'
 init_from = 'finetune_xsum'
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False
