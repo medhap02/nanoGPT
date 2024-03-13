@@ -8,13 +8,22 @@ import torch
 import tiktoken
 from model import GPTConfig, GPT
 import datasets
+import wandb
+import evaluate
+import rouge_score
+import pickle
+
+wandb.login(key="816714ca69d688b9b34ab168ee70986adb4cac4a")
+# wandb.init(id=run_id, resume="must")
+wandb.init(project='continuedpretraining-finetune') # check to edit
+rouge = evaluate.load("rouge")
 
 # -----------------------------------------------------------------------------
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
 out_dir = 'out' # ignored if init_from is not 'resume'
 start = "\n" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 num_samples = 10 # number of samples to draw
-max_new_tokens = 500 # number of tokens generated in each sample
+max_new_tokens = 150 # number of tokens generated in each sample
 temperature = 0.8 # 1.0 = no change, < 1.0 = less random, > 1.0 = more random, in predictions
 top_k = 200 # retain only the top_k most likely tokens, clamp others to have 0 probability
 seed = 1337
@@ -82,16 +91,38 @@ start_ids = encode(start)
 x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
 
 xsum = datasets.load_dataset('xsum')
-
+preds = []
+gts = []
 # run generation
 with torch.no_grad():
     with ctx:
-        # for k in range(num_samples):
+        # for k in range(1):
         #     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-        for k in range(1):
+        for k in range(xsum['test'].num_rows):
             sample = "Generate a summary for the following document: " + xsum['test']['document'][k]
             encoded = encode(sample)
             x = (torch.tensor(encoded, dtype=torch.long, device=device)[None, ...])
             y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-            print(decode(y[0].tolist()))
-            print('---------------')
+            s = decode(y[0].tolist())
+            # print(s)
+            # print("--")
+            idx = s.find('Summary:')
+            s = s[idx:]
+            idx2 = s.find("Document:")
+            s = s[:idx2]
+            s = s.replace("Summary:", "")
+            s = s.strip("\n")
+
+            preds.append(s)
+            gts.append(xsum['test']['summary'][k])
+            # print(s)
+            # print("--")
+            # print(xsum['test']['summary'][k])
+            # print('---------------')
+            if (k+1)%20 == 0:
+              metrics = rouge.compute(predictions=preds, references=gts, use_stemmer=True)
+              wandb.log({'step':k+1, 'rouge1': metrics['rouge1'], 'rouge2': metrics['rouge2'], 'rougeL': metrics['rougeL'], 'rougeLsum': metrics['rougeLsum']})
+              with open('pred.pkl', 'wb') as fp:
+                pickle.dump(preds, fp)
+              with open('gt.pkl', 'wb') as fp:
+                pickle.dump(gts, fp)
