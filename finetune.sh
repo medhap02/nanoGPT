@@ -11,4 +11,5 @@ module load anaconda3
 conda activate mpalaval-research
 cd /ocean/projects/cis230002p/palavall/nanoGPT
 
+python data/xsum_train/prepare.py
 python3 train.py config/finetune_xsum.py
