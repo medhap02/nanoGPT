@@ -7,7 +7,7 @@ wandb_log = False # feel free to turn on
 wandb_project = 'xsum'
 wandb_run_name = 'ft-' + str(time.time())
 
-dataset = 'xsum'
+dataset = 'xsum_train'
 init_from = 'gpt2-large' # this is the largest GPT-2 model
 
 # only save checkpoints if the validation loss improves
