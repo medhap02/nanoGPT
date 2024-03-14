@@ -1,6 +1,6 @@
 import time
 
-out_dir = 'out-xsum'
+out_dir = 'out-xsum-save'
 eval_interval = 5
 eval_iters = 50
 wandb_log = False # feel free to turn on
